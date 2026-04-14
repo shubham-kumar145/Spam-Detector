@@ -1,27 +1,3 @@
-# import streamlit as st
-# import pickle
-
-# # Load Model
-# model = pickle.load(open("model.pkl", "rb"))
-# vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
-
-# st.title("📧 Spam Email Detection")
-
-# st.write("Enter Email Text Below")
-
-# email = st.text_area("Email Text")
-
-# if st.button("Predict"):
-    
-#     data = vectorizer.transform([email])
-    
-#     prediction = model.predict(data)
-    
-#     if prediction[0] == 1:
-#         st.error("🚨 Spam Email")
-#     else:
-#         st.success("✅ Not Spam")
-
 import streamlit as st
 import pickle
 
@@ -105,12 +81,25 @@ hr { border: none; border-top: 1px solid #e2e8f0; margin: 1.5rem 0; }
 
 # ── Load model ────────────────────────────────────────────────────────────────
 @st.cache_resource
-def load_artifacts():
-    model      = pickle.load(open("model.pkl", "rb"))
-    vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
-    return model, vectorizer
+# def load_artifacts():
+#     model      = pickle.load(open("model.pkl", "rb"))
+#     vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
+#     return model, vectorizer
 
-model, vectorizer = load_artifacts()
+# model, vectorizer = load_artifacts()
+import os
+
+@st.cache_resource
+def load_artifacts():
+    base_path = os.path.dirname(__file__)
+
+    model_path = os.path.join(base_path, "model.pkl")
+    vectorizer_path = os.path.join(base_path, "vectorizer.pkl")
+
+    model = pickle.load(open(model_path, "rb"))
+    vectorizer = pickle.load(open(vectorizer_path, "rb"))
+
+    return model, vectorizer
 
 # ── Hero section ──────────────────────────────────────────────────────────────
 st.markdown("""
