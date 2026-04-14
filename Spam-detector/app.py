@@ -101,6 +101,8 @@ def load_artifacts():
 
     return model, vectorizer
 
+model, vectorizer = load_artifacts()
+
 # ── Hero section ──────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
