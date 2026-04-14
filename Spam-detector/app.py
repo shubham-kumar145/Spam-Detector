@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pickle
 
@@ -87,7 +88,6 @@ hr { border: none; border-top: 1px solid #e2e8f0; margin: 1.5rem 0; }
 #     return model, vectorizer
 
 # model, vectorizer = load_artifacts()
-import os
 
 @st.cache_resource
 def load_artifacts():
